@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Putty_starter")]
-[assembly: AssemblyDescription("by SergioMarotco https://sites.google.com/site/coolprogramms/arhiv-besplatnyh-programm")]
+[assembly: AssemblyDescription("by SergioMarotco https://github.com/sergiomarotco")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("https://www.youtube.com/user/SergioMarotco")]
+[assembly: AssemblyCompany("https://github.com/sergiomarotco")]
 [assembly: AssemblyProduct("Putty_starter")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
