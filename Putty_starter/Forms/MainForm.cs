@@ -346,15 +346,19 @@ namespace Putty_starter
             {
                 if (listBox1.SelectedIndex > -1)
                 {
-                    //Process.Start("putty.exe -ssh vipnet@172.17.25.127 -pw j,tgbu[jkcfh");
                     string[] str3 = str2[listBox1.SelectedIndex].Split('\t');
-                    Process.Start("putty.exe", "-ssh vipnet@" + str3[1].ToString() + " -pw " + str3[2].ToString());
-                    Thread.Sleep(3000);
-                    SendKeys.Send("enable");
-                    SendKeys.Send("{ENTER}");
-                    Thread.Sleep(500);
-                    SendKeys.Send(str3[3].ToString());
-                    SendKeys.Send("{ENTER}");
+                    if (File.Exists("putty.exe"))
+                    {
+                        //Process.Start("putty.exe -ssh vipnet@172.17.25.127 -pw j,tgbu[jkcfh");
+                        Process.Start("putty.exe", "-ssh vipnet@" + str3[1].ToString() + " -pw " + str3[2].ToString());
+                        Thread.Sleep(3000);
+                        SendKeys.Send("enable");
+                        SendKeys.Send("{ENTER}");
+                        Thread.Sleep(500);
+                        SendKeys.Send(str3[3].ToString());
+                        SendKeys.Send("{ENTER}");
+                    }
+                    else MessageBox.Show("Please add putty.exe in programe folder");
                 }
             }
             catch { }
@@ -523,15 +527,24 @@ namespace Putty_starter
                 {
                     //Process.Start("putty.exe -ssh vipnet@172.17.25.127 -pw j,tgbu[jkcfh");
                     string[] str3 = str2[listBox1.SelectedIndex].Split('\t');
-                    Process.Start("putty.exe", "-ssh vipnet@" + str3[1].ToString() + " -pw " + str3[2].ToString());
-                    Thread.Sleep(3000);
-                    SendKeys.Send("enable");
-                    SendKeys.Send("{ENTER}");
-                    Thread.Sleep(500);
-                    SendKeys.Send(str3[3].ToString());
-                    SendKeys.Send("{ENTER}");
+                    if (File.Exists("putty.exe"))
+                    {
+                        Process.Start("putty.exe", "-ssh vipnet@" + str3[1].ToString() + " -pw " + str3[2].ToString());
+                        Thread.Sleep(3000);
+                        SendKeys.Send("enable");
+                        SendKeys.Send("{ENTER}");
+                        Thread.Sleep(500);
+                        SendKeys.Send(str3[3].ToString());
+                        SendKeys.Send("{ENTER}");
+                    }
+                    else MessageBox.Show("Please add putty.exe in programe folder");
                 }
             }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
