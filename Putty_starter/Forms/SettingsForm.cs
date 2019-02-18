@@ -135,8 +135,7 @@ namespace Putty_starter
             }
             catch { }
         }
-
-
+        
         private void button4_Click(object sender, EventArgs e)
         {
             ColorDialog vv = new ColorDialog();
