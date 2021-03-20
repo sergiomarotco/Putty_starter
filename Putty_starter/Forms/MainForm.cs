@@ -13,55 +13,52 @@ namespace Putty_starter
     {
         public void NewList(int ind, int sredn, bool fromThread)
         {
-            try
+
+            if (fromThread == false)
             {
-                if (fromThread == false)
-                {
-                    listBox1.Items.Clear();
-                    listBox1.Refresh();
-                }
+                listBox1.Items.Clear();
+                listBox1.Refresh();
+            }
+            else
+            {
+                listBox1.Invoke(new Action(() => listBox1.Items.Clear()));
+                listBox1.Invoke(new Action(() => listBox1.Refresh()));
+            }
+            string[] str3;
+            if (File.Exists("Hosts.txt"))
+            {
+                str = File.ReadAllText("Hosts.txt");
+                string[] str2_m = str.Split('\r');
+                hosts_info = new string[str2_m.Length - 1];
+                for (int i = 0; i < str2_m.Length - 1; i++)
+                    hosts_info[i] = str2_m[i + 1].Substring(1);
+                if (ind != -1)
+                    for (int i = 0; i < hosts_info.Length; i++)
+                    {
+                        str3 = hosts_info[i].Split('\t');
+                        if (fromThread == false)
+                            listBox1.Items.Add(str3[0]);
+                        else
+                            listBox1.Invoke(new Action(() => listBox1.Items.Add(str3[0])));
+                    }
                 else
-                {
-                    listBox1.Invoke(new Action(() => listBox1.Items.Clear()));
-                    listBox1.Invoke(new Action(() => listBox1.Refresh()));
-                }                
-                string[] str3;
-                if (File.Exists("Hosts.txt"))
-                {
-                    str = File.ReadAllText("Hosts.txt");
-                    string[] str2_m = str.Split('\r');
-                    hosts_info = new string[str2_m.Length - 1];
-                    for (int i = 0; i < str2_m.Length - 1; i++)
-                        hosts_info[i] = str2_m[i + 1].Substring(1);
-                    if (ind != -1)
-                        for (int i = 0; i < hosts_info.Length; i++)
-                        {
-                            str3 = hosts_info[i].Split('\t');
+                    for (int i = 0; i < hosts_info.Length; i++)
+                    {
+                        str3 = hosts_info[i].Split('\t');
+                        if (i != ind)
                             if (fromThread == false)
                                 listBox1.Items.Add(str3[0]);
-                            else
-                                listBox1.Invoke(new Action(() => listBox1.Items.Add(str3[0])));
-                        }
-                    else
-                        for (int i = 0; i < hosts_info.Length; i++)
-                        {
-                            str3 = hosts_info[i].Split('\t');
-                            if (i != ind)
-                                if (fromThread == false)
-                                    listBox1.Items.Add(str3[0]);
-                                else listBox1.Invoke(new Action(() => listBox1.Items.Add(str3[0])));
-                            else
-                                  if (fromThread == false)
-                                listBox1.Items.Add(str3[0] + " " + sredn + " ms");
-                            else listBox1.Invoke(new Action(() => listBox1.Items.Add(str3[0] + " " + sredn + " ms")));
-                        }
-                    this.Size = new Size(this.Size.Width, 81+(14*listBox1.Items.Count));
-                    listBox1.Location = new Point(0, 81);
-                    listBox1.Size = new Size(this.Size.Width, this.Size.Height - 81);
-                }
-                else { MessageBox.Show("'Hosts.txt' file is missing or incorrect ... Rebooting ..."); }
+                            else listBox1.Invoke(new Action(() => listBox1.Items.Add(str3[0])));
+                        else
+                              if (fromThread == false)
+                            listBox1.Items.Add(str3[0] + " " + sredn + " ms");
+                        else listBox1.Invoke(new Action(() => listBox1.Items.Add(str3[0] + " " + sredn + " ms")));
+                    }
+                this.Size = new Size(this.Size.Width, 81 + (14 * listBox1.Items.Count));
+                listBox1.Location = new Point(0, 81);
+                listBox1.Size = new Size(this.Size.Width, this.Size.Height - 81);
             }
-            catch(Exception ee) { }
+            else { MessageBox.Show("'Hosts.txt' file is missing or incorrect ... Rebooting ..."); }
         }
         public MainForm()
         {
@@ -503,11 +500,11 @@ namespace Putty_starter
 
         private void ДобавитьНовыйРесурсToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           // try {
-                NewForm fm4;
-                this.Hide();
-                fm4 = new NewForm(Top_Most);
-                fm4.ShowDialog();
+            // try {
+            NewForm fm4;
+            this.Hide();
+            fm4 = new NewForm(Top_Most);
+            fm4.ShowDialog();
             if (fm4.DialogResult == DialogResult.OK)
             {
                 if (hosts_info != null)
@@ -519,10 +516,10 @@ namespace Putty_starter
                 }
                 else hosts_info = new string[1];
                 hosts_info[hosts_info.Length - 1] = fm4.Return_new_host();
-                Save_Hosts();                
-                }
-                this.Show();
-           // }
+                Save_Hosts();
+            }
+            this.Show();
+            // }
             //catch (Exception ee) { MessageBox.Show("добавитьНовыйРесурсToolStripMenuItem_Click"+Environment.NewLine+ee.Message); }
         }
 
