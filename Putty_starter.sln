@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Putty_starter", "Putty_starter\Putty_starter.csproj", "{D25C06BE-BB73-4254-90AB-AD368DA66885}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Putty_starter", "Putty_starter.csproj", "{D25C06BE-BB73-4254-90AB-AD368DA66885}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {14FFA0E5-22F5-4A99-A42E-384F7F2B311B}
 	EndGlobalSection
 EndGlobal
