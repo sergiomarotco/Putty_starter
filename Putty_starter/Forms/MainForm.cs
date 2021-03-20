@@ -102,7 +102,6 @@ namespace Putty_starter
                             TopMost = Top_Most;
                             break;
                         case "Ping":
-                            PingtextBox1.Text = W[2];
                             Ping = Convert.ToInt32(W[2]);
                             break;
                     }
