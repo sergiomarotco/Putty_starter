@@ -55,6 +55,9 @@ namespace Putty_starter
                                 listBox1.Items.Add(str3[0] + " " + sredn + " ms");
                             else listBox1.Invoke(new Action(() => listBox1.Items.Add(str3[0] + " " + sredn + " ms")));
                         }
+                    this.Size = new Size(this.Size.Width, 81+(14*listBox1.Items.Count));
+                    listBox1.Location = new Point(0, 81);
+                    listBox1.Size = new Size(this.Size.Width, this.Size.Height - 81);
                 }
                 else { MessageBox.Show("'Hosts.txt' file is missing or incorrect ... Rebooting ..."); }
             }

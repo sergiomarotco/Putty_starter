@@ -53,13 +53,15 @@
             // 
             // listBox1
             // 
+            this.listBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.listBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(4, 54);
+            this.listBox1.Location = new System.Drawing.Point(0, 81);
             this.listBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.listBox1.MinimumSize = new System.Drawing.Size(0, 81);
             this.listBox1.MultiColumn = true;
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(232, 589);
+            this.listBox1.Size = new System.Drawing.Size(241, 628);
             this.listBox1.TabIndex = 0;
             this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
             this.listBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox1_DrawItem);
@@ -68,12 +70,13 @@
             // 
             // Closebutton
             // 
+            this.Closebutton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.Closebutton.BackColor = System.Drawing.Color.Black;
             this.Closebutton.ForeColor = System.Drawing.Color.White;
-            this.Closebutton.Location = new System.Drawing.Point(4, 22);
+            this.Closebutton.Location = new System.Drawing.Point(0, 2);
             this.Closebutton.Margin = new System.Windows.Forms.Padding(4);
             this.Closebutton.Name = "Closebutton";
-            this.Closebutton.Size = new System.Drawing.Size(233, 30);
+            this.Closebutton.Size = new System.Drawing.Size(241, 30);
             this.Closebutton.TabIndex = 3;
             this.Closebutton.Text = "Close";
             this.Closebutton.UseVisualStyleBackColor = false;
@@ -81,7 +84,7 @@
             // 
             // PingtextBox1
             // 
-            this.PingtextBox1.Location = new System.Drawing.Point(4, 655);
+            this.PingtextBox1.Location = new System.Drawing.Point(0, 38);
             this.PingtextBox1.Margin = new System.Windows.Forms.Padding(4);
             this.PingtextBox1.Name = "PingtextBox1";
             this.PingtextBox1.Size = new System.Drawing.Size(33, 22);
@@ -94,7 +97,7 @@
             this.PingBox1.Checked = true;
             this.PingBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.PingBox1.ForeColor = System.Drawing.Color.White;
-            this.PingBox1.Location = new System.Drawing.Point(47, 657);
+            this.PingBox1.Location = new System.Drawing.Point(41, 40);
             this.PingBox1.Margin = new System.Windows.Forms.Padding(4);
             this.PingBox1.Name = "PingBox1";
             this.PingBox1.Size = new System.Drawing.Size(58, 21);
@@ -107,7 +110,7 @@
             this.button3.BackColor = System.Drawing.Color.Black;
             this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(160, 655);
+            this.button3.Location = new System.Drawing.Point(164, 38);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(77, 30);
@@ -120,7 +123,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(0, 683);
+            this.label1.Location = new System.Drawing.Point(2, 64);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(20, 17);
@@ -157,37 +160,37 @@
             // названиеToolStripMenuItem
             // 
             this.названиеToolStripMenuItem.Name = "названиеToolStripMenuItem";
-            this.названиеToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.названиеToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
             this.названиеToolStripMenuItem.Text = "Название";
             // 
             // адресToolStripMenuItem
             // 
             this.адресToolStripMenuItem.Name = "адресToolStripMenuItem";
-            this.адресToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.адресToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
             this.адресToolStripMenuItem.Text = "Адрес";
             // 
             // парольSSHToolStripMenuItem
             // 
             this.парольSSHToolStripMenuItem.Name = "парольSSHToolStripMenuItem";
-            this.парольSSHToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.парольSSHToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
             this.парольSSHToolStripMenuItem.Text = "Пароль SSH";
             // 
             // парольViPnetToolStripMenuItem
             // 
             this.парольViPnetToolStripMenuItem.Name = "парольViPnetToolStripMenuItem";
-            this.парольViPnetToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.парольViPnetToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
             this.парольViPnetToolStripMenuItem.Text = "Пароль ViPNet";
             // 
             // доступностьToolStripMenuItem
             // 
             this.доступностьToolStripMenuItem.Name = "доступностьToolStripMenuItem";
-            this.доступностьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.доступностьToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
             this.доступностьToolStripMenuItem.Text = "Доступность";
             // 
             // былВСетиToolStripMenuItem
             // 
             this.былВСетиToolStripMenuItem.Name = "былВСетиToolStripMenuItem";
-            this.былВСетиToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.былВСетиToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
             this.былВСетиToolStripMenuItem.Text = "Был в сети";
             // 
             // пингToolStripMenuItem
@@ -235,7 +238,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(241, 709);
-            this.MinimumSize = new System.Drawing.Size(241, 709);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Пингатор + Putty starter";
