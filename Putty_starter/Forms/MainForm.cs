@@ -30,22 +30,22 @@ namespace Putty_starter
                 {
                     str = File.ReadAllText("Hosts.txt");
                     string[] str2_m = str.Split('\r');
-                    str2 = new string[str2_m.Length - 1];
+                    hosts_info = new string[str2_m.Length - 1];
                     for (int i = 0; i < str2_m.Length - 1; i++)
-                        str2[i] = str2_m[i + 1].Substring(1);
+                        hosts_info[i] = str2_m[i + 1].Substring(1);
                     if (ind != -1)
-                        for (int i = 0; i < str2.Length; i++)
+                        for (int i = 0; i < hosts_info.Length; i++)
                         {
-                            str3 = str2[i].Split('\t');
+                            str3 = hosts_info[i].Split('\t');
                             if (fromThread == false)
                                 listBox1.Items.Add(str3[0]);
                             else
                                 listBox1.Invoke(new Action(() => listBox1.Items.Add(str3[0])));
                         }
                     else
-                        for (int i = 0; i < str2.Length; i++)
+                        for (int i = 0; i < hosts_info.Length; i++)
                         {
-                            str3 = str2[i].Split('\t');
+                            str3 = hosts_info[i].Split('\t');
                             if (i != ind)
                                 if (fromThread == false)
                                     listBox1.Items.Add(str3[0]);
@@ -109,7 +109,7 @@ namespace Putty_starter
             }
         }
         string str;
-        public string[] str2;
+        public string[] hosts_info;
         bool DontFragment = true;
         int Ping = 0;
 
@@ -119,10 +119,10 @@ namespace Putty_starter
             {*/
                 //listBox1.DrawMode = DrawMode.OwnerDrawVariable;
                 t = new Thread(PING); t.Start();
-                b = new bool[listBox1.Items.Count];
-                for (int i = 0; i < b.Length; i++)
+                hosts_availability = new bool[listBox1.Items.Count];
+                for (int i = 0; i < hosts_availability.Length; i++)
                 {
-                    b[i] = false;
+                    hosts_availability[i] = false;
                 }
            /* }
             catch { }*/
@@ -131,7 +131,7 @@ namespace Putty_starter
         /// <summary>
         /// Массив показывает какой из хостов онлайн, а какой нет
         /// </summary>
-        public bool[] b;
+        public bool[] hosts_availability;
         private const int WM_NCHITTEST = 0x0084;
         private const int HTCAPTION = 2;
         private void button2_Click(object sender, EventArgs e)
@@ -199,7 +199,7 @@ namespace Putty_starter
                             options.DontFragment = DontFragment;
                             byte[] buffer = System.Text.Encoding.ASCII.GetBytes("https://github.com/sergiomarotco");
                             int timeout = Convert.ToInt32(PingtextBox1.Text);
-                            str3 = str2[i].Split('\t');
+                            str3 = hosts_info[i].Split('\t');
 
                             Ping pingSender = new Ping();
                             reply = pingSender.Send(
@@ -223,26 +223,26 @@ namespace Putty_starter
                                 int sredn = -1;
                                 if ((sredn = (pp[0] = pp[1] + pp[2] + pp[3]) / 4) <= Convert.ToInt32(PingtextBox1.Text))
                                 {//если вычисленное среднее  меньше заданного значения ожидания
-                                    if (b[i] == false)
+                                    if (hosts_availability[i] == false)
                                     {
                                         if (notification == true)
                                             MessageBox.Show(str3[0] + " now available (online)!!!");//Отображение доступности \t1                                                                                                              
-                                        str2[i] = str2_change_one_item(DateTime.Now.ToString(), i, 5);
-                                        string[] texttowrite = new string[str2.Length + 1];
+                                        hosts_info[i] = str2_change_one_item(DateTime.Now.ToString(), i, 5);
+                                        string[] texttowrite = new string[hosts_info.Length + 1];
                                         texttowrite[0] = file_Hosts_zagolovok;
-                                        Array.Copy(str2, 0, texttowrite, 1, str2.Length);
+                                        Array.Copy(hosts_info, 0, texttowrite, 1, hosts_info.Length);
                                         WriteToFile("Hosts.txt", texttowrite);
                                         NewList(i, sredn, true);
                                     }
-                                    b[i] = true;
+                                    hosts_availability[i] = true;
                                 }
-                                else b[i] = false;
-                                listBox1.Invoke(new Action(() => listBox1.Items[i] = str2[i].Split('\t')[0] + " \t" + sredn + " ms"));
+                                else hosts_availability[i] = false;
+                                listBox1.Invoke(new Action(() => listBox1.Items[i] = hosts_info[i].Split('\t')[0] + " \t" + sredn + " ms"));
                             }
                             else
-                                b[i] = false;
+                                hosts_availability[i] = false;
                         }
-                        catch { b[i] = false; }
+                        catch { Application.Restart(); }
                     }
                 listBox1.BeginInvoke(rt2, new object[] { });//рефреш листа
                 label1.BeginInvoke(rt, new object[] { "Ping completed, pause ..." });
@@ -259,7 +259,7 @@ namespace Putty_starter
         /// <returns></returns>
         private string str2_change_one_item(string texttoput, int str2_number, int position_in_str2_i)
         {
-            string[] str3 = str2[str2_number].Split('\t');
+            string[] str3 = hosts_info[str2_number].Split('\t');
             string to_return = "";
             for (int h = 0; h < str3.Length; h++)
             {
@@ -285,7 +285,7 @@ namespace Putty_starter
                     e.DrawBackground();//Cтираем все перерисовкой фона	
                     Brush myBrush = Brushes.Black;
                     Graphics g = listBox1.CreateGraphics();
-                    if (b[e.Index].Equals(true))
+                    if (hosts_availability[e.Index].Equals(true))
                         myBrush = Brushes.Black;
                     else myBrush = deniedBrush;
 
@@ -314,7 +314,7 @@ namespace Putty_starter
         {
             try {
                 this.Hide();
-                fm = new SettingsForm(PingtextBox1.Text, ping_pause, options.DontFragment, deniedColor, notification, Top_Most, Ping, b, str2);
+                fm = new SettingsForm(PingtextBox1.Text, ping_pause, options.DontFragment, deniedColor, notification, Top_Most, Ping, hosts_availability, hosts_info);
                 fm.ShowDialog();
                 if (fm.DialogResult == DialogResult.OK)
                 {
@@ -330,25 +330,24 @@ namespace Putty_starter
             }
             catch (Exception ee) { MessageBox.Show("Нажатие кнопки Settings" + Environment.NewLine + ee.Message); }
         }
-        private void listBox1_MouseClick(object sender, MouseEventArgs e)
+        private void ListBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (listBox1.SelectedIndex != -1)
-            {
+            
                 //if (e.Button == MouseButtons.Right)
                 //{
                     contextMenuStrip1.Visible = true;
                     contextMenuStrip1.Show(listBox1, new Point(e.X, e.Y));
                // }
-            }
+            
         }
-        private void подключитьсядвойКликToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ПодключитьсядвойКликToolStripMenuItem_Click(object sender, EventArgs e)
         {
             contextMenuStrip1.Show();
             try
             {
                 if (listBox1.SelectedIndex > -1)
                 {
-                    string[] str3 = str2[listBox1.SelectedIndex].Split('\t');
+                    string[] str3 = hosts_info[listBox1.SelectedIndex].Split('\t');
                     if (File.Exists("putty.exe"))
                     {
                         //Process.Start("putty.exe -ssh vipnet@172.17.25.127 -pw j,tgbu[jkcfh");
@@ -365,40 +364,43 @@ namespace Putty_starter
             }
             catch { }
         }
-        private void пингToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ПингToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedIndex != -1)
             {
-                string[] s = str2[listBox1.SelectedIndex].Split('\t');
+                string[] s = hosts_info[listBox1.SelectedIndex].Split('\t');
                 Process.Start("cmd.exe", (@"/K ping " + s[1]));
             }
         }
         EditForm fm3;
-        private void изменитьЗаписьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Save_Hosts()
+        {
+            string[] texttowrite = new string[hosts_info.Length + 1];
+            texttowrite[0] = file_Hosts_zagolovok;
+            Array.Copy(hosts_info, 0, texttowrite, 1, hosts_info.Length);
+            string[] ty = DateTime.Now.ToString().Split(' ');
+            WriteToFile("Hosts " + ty[0] + " " + ty[1].Replace(':', ' ') + ".txt", texttowrite);//делаем бэкап (без изменений)
+            WriteToFile("Hosts.txt", texttowrite);//записываем с изменениями
+            NewList(-1, -1, false);
+            label1.BeginInvoke(rt, new object[] { "Saved ..." });
+            t.Abort();
+            t = new Thread(PING); t.Start();
+        }
+        private void ИзменитьЗаписьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
                 this.Hide();
 
-                string[] bb = str2[listBox1.SelectedIndex].Split('\t');
+                string[] bb = hosts_info[listBox1.SelectedIndex].Split('\t');
                 fm3 = new EditForm(listBox1.SelectedItem.ToString(), bb[1], bb[2], bb[3], Top_Most, Convert.ToInt32(bb[4]));
                 fm3.ShowDialog();
                 if (fm3.DialogResult == DialogResult.OK)
                 {
-                    b = new bool[listBox1.Items.Count];
-                    for (int i = 0; i < b.Length; i++)
-                        b[i] = false;
-                    string[] texttowrite = new string[str2.Length + 1];
-                    texttowrite[0] = file_Hosts_zagolovok;
-                    Array.Copy(str2, 0, texttowrite, 1, str2.Length);
-                    string[] ty = DateTime.Now.ToString().Split(' ');
-                    WriteToFile("Hosts " + ty[0] + " " + ty[1].Replace(':', ' ') + ".txt", texttowrite);//делаем бэкап (без изменений)
-                    texttowrite[listBox1.SelectedIndex + 1] = (fm3.ReturnName() + "\t" + fm3.ReturnIP() + "\t" + fm3.ReturnKey() + "\t" + fm3.ReturnKey2() + "\t" + fm3.ReturnIsNotificate() + "\t" + bb[5]);
-                    WriteToFile("Hosts.txt", texttowrite);//записываем с изменениями
-                    NewList(-1, -1, false);
-                    label1.BeginInvoke(rt, new object[] { "Saved ..." });
-                    t.Abort();
-                    t = new Thread(PING); t.Start();
+                    hosts_availability = new bool[listBox1.Items.Count];
+                    for (int i = 0; i < hosts_availability.Length; i++)
+                        hosts_availability[i] = false;
+                    Save_Hosts();
                 }
                 this.Show();
             }
@@ -428,17 +430,17 @@ namespace Putty_starter
             catch (Exception ee) { MessageBox.Show("WriteToFile" + Environment.NewLine + ee.Message); }
         }
 
-        private void информацияToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+        private void ИнформацияToolStripMenuItem_MouseEnter(object sender, EventArgs e)
         {
            // try {
                 if (listBox1.SelectedIndex != -1)
                 {
-                    string[] s = str2[listBox1.SelectedIndex].Split('\t');
+                    string[] s = hosts_info[listBox1.SelectedIndex].Split('\t');
                     названиеToolStripMenuItem.Text = "Название: " + s[0];
                     адресToolStripMenuItem.Text = "Адрес: " + s[1];
                     парольSSHToolStripMenuItem.Text = "Пароль SSH: " + s[2];
                     парольViPnetToolStripMenuItem.Text = "Пароль ViPNet: " + s[3];
-                    if (Convert.ToInt32(b[listBox1.SelectedIndex]) == 1)
+                    if (Convert.ToInt32(hosts_availability[listBox1.SelectedIndex]) == 1)
                     {
                         доступностьToolStripMenuItem.ForeColor = Color.DarkGreen;
                         доступностьToolStripMenuItem.Text = "Доступен";
@@ -490,26 +492,25 @@ namespace Putty_starter
           //  catch (Exception ee) { MessageBox.Show("информацияToolStripMenuItem_MouseEnter" + Environment.NewLine + ee.Message); }
         }
 
-        private void добавитьНовыйРесурсToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ДобавитьНовыйРесурсToolStripMenuItem_Click(object sender, EventArgs e)
         {
            // try {
                 NewForm fm4;
                 this.Hide();
-                string[] bb = str2[listBox1.SelectedIndex].Split('\t');
                 fm4 = new NewForm(Top_Most);
                 fm4.ShowDialog();
-                if (fm4.DialogResult == DialogResult.OK)
+            if (fm4.DialogResult == DialogResult.OK)
+            {
+                if (hosts_info != null)
                 {
-                    b = new bool[listBox1.Items.Count];
-                    for (int i = 0; i < b.Length; i++)
-                    {
-                        b[i] = false;
-                    }
-                    // WriteToFile("Hosts.txt", texttowrite);//записываем с изменениями
-                    NewList(-1,-1,false);
-                    label1.BeginInvoke(rt, new object[] { "Saved ..." });
-                    t.Abort();
-                    t = new Thread(PING); t.Start();
+                    string[] ttt = new string[hosts_info.Length];
+                    Array.Copy(hosts_info, 0, ttt, 0, hosts_info.Length);
+                    hosts_info = new string[hosts_info.Length + 1];
+                    Array.Copy(ttt, 0, hosts_info, 0, ttt.Length);
+                }
+                else hosts_info = new string[1];
+                hosts_info[hosts_info.Length - 1] = fm4.Return_new_host();
+                Save_Hosts();                
                 }
                 this.Show();
            // }
@@ -528,7 +529,7 @@ namespace Putty_starter
                 if (listBox1.SelectedIndex > -1)
                 {
                     //Process.Start("putty.exe -ssh vipnet@172.17.25.127 -pw j,tgbu[jkcfh");
-                    string[] str3 = str2[listBox1.SelectedIndex].Split('\t');
+                    string[] str3 = hosts_info[listBox1.SelectedIndex].Split('\t');
                     if (File.Exists("putty.exe"))
                     {
                         Process.Start("putty.exe", "-ssh vipnet@" + str3[1].ToString() + " -pw " + str3[2].ToString());

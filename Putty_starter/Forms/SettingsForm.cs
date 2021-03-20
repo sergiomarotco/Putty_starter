@@ -46,7 +46,7 @@ namespace Putty_starter
             //comboBox1.ForeColor=deniedColor
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             if (File.Exists("Pconfig.txt"))
                 File.Delete("Pconfig.txt");
@@ -108,7 +108,7 @@ namespace Putty_starter
             //this.DialogResult = DialogResult.OK;
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void TextBox2_TextChanged(object sender, EventArgs e)
         {
             double num = 0.0;
             if (double.TryParse(textBox2.Text, out num))            
@@ -117,7 +117,7 @@ namespace Putty_starter
                 textBox2.Text = "0";            
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             //this.DialogResult = DialogResult.OK;
         }
@@ -130,7 +130,7 @@ namespace Putty_starter
                 textBox1.Text = "250";
         }
         AboutForm aabout;
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             try
             {
@@ -142,7 +142,7 @@ namespace Putty_starter
             catch { }
         }
         
-        private void button4_Click(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)
         {
             ColorDialog vv = new ColorDialog();
             vv.ShowDialog();
@@ -157,7 +157,7 @@ namespace Putty_starter
                 else buff += buckup[i];
             File.WriteAllText(filename, buff);
         }
-        private void button5_Click(object sender, EventArgs e)
+        private void Button5_Click(object sender, EventArgs e)
         {
             SaveFileDialog SS = new SaveFileDialog();
             SS.Filter = "CSV files (разделитель табуляция) (*.csv)|*.csv|All files (*.*)|*.*";
@@ -203,6 +203,11 @@ namespace Putty_starter
                     System.Diagnostics.Process.Start(SS.FileName);
                 }
             }
+        }
+
+        private void SettingsForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

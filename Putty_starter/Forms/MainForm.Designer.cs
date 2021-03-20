@@ -63,7 +63,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(241, 628);
             this.listBox1.TabIndex = 0;
-            this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
+            this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListBox1_MouseClick);
             this.listBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox1_DrawItem);
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             this.listBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDoubleClick);
@@ -155,7 +155,7 @@
             this.информацияToolStripMenuItem.Name = "информацияToolStripMenuItem";
             this.информацияToolStripMenuItem.Size = new System.Drawing.Size(285, 24);
             this.информацияToolStripMenuItem.Text = "Информация";
-            this.информацияToolStripMenuItem.MouseEnter += new System.EventHandler(this.информацияToolStripMenuItem_MouseEnter);
+            this.информацияToolStripMenuItem.MouseEnter += new System.EventHandler(this.ИнформацияToolStripMenuItem_MouseEnter);
             // 
             // названиеToolStripMenuItem
             // 
@@ -198,28 +198,28 @@
             this.пингToolStripMenuItem.Name = "пингToolStripMenuItem";
             this.пингToolStripMenuItem.Size = new System.Drawing.Size(285, 24);
             this.пингToolStripMenuItem.Text = "Пинг";
-            this.пингToolStripMenuItem.Click += new System.EventHandler(this.пингToolStripMenuItem_Click);
+            this.пингToolStripMenuItem.Click += new System.EventHandler(this.ПингToolStripMenuItem_Click);
             // 
             // подключитьсядвойКликToolStripMenuItem
             // 
             this.подключитьсядвойКликToolStripMenuItem.Name = "подключитьсядвойКликToolStripMenuItem";
             this.подключитьсядвойКликToolStripMenuItem.Size = new System.Drawing.Size(285, 24);
             this.подключитьсядвойКликToolStripMenuItem.Text = "Подключиться (двой клик)";
-            this.подключитьсядвойКликToolStripMenuItem.Click += new System.EventHandler(this.подключитьсядвойКликToolStripMenuItem_Click);
+            this.подключитьсядвойКликToolStripMenuItem.Click += new System.EventHandler(this.ПодключитьсядвойКликToolStripMenuItem_Click);
             // 
             // изменитьЗаписьToolStripMenuItem
             // 
             this.изменитьЗаписьToolStripMenuItem.Name = "изменитьЗаписьToolStripMenuItem";
             this.изменитьЗаписьToolStripMenuItem.Size = new System.Drawing.Size(285, 24);
             this.изменитьЗаписьToolStripMenuItem.Text = "Изменить выбранный ресурс";
-            this.изменитьЗаписьToolStripMenuItem.Click += new System.EventHandler(this.изменитьЗаписьToolStripMenuItem_Click);
+            this.изменитьЗаписьToolStripMenuItem.Click += new System.EventHandler(this.ИзменитьЗаписьToolStripMenuItem_Click);
             // 
             // добавитьНовыйРесурсToolStripMenuItem
             // 
             this.добавитьНовыйРесурсToolStripMenuItem.Name = "добавитьНовыйРесурсToolStripMenuItem";
             this.добавитьНовыйРесурсToolStripMenuItem.Size = new System.Drawing.Size(285, 24);
             this.добавитьНовыйРесурсToolStripMenuItem.Text = "Добавить новый ресурс";
-            this.добавитьНовыйРесурсToolStripMenuItem.Click += new System.EventHandler(this.добавитьНовыйРесурсToolStripMenuItem_Click);
+            this.добавитьНовыйРесурсToolStripMenuItem.Click += new System.EventHandler(this.ДобавитьНовыйРесурсToolStripMenuItem_Click);
             // 
             // MainForm
             // 
