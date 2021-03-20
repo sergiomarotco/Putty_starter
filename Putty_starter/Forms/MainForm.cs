@@ -110,7 +110,13 @@ namespace Putty_starter
         }
         string str;
         public string[] hosts_info;
+        /// <summary>
+        /// Фрагментировать ли данные в PING-пакете	
+        /// </summary>
         bool DontFragment = true;
+        /// <summary>
+        /// Значение пинга заданное по - умолчанию
+        /// </summary>
         int Ping = 0;
 
         private void Form1_Load(object sender, EventArgs e)
@@ -242,7 +248,7 @@ namespace Putty_starter
                             else
                                 hosts_availability[i] = false;
                         }
-                        catch { Application.Restart(); }
+                        catch {  }
                     }
                 listBox1.BeginInvoke(rt2, new object[] { });//рефреш листа
                 label1.BeginInvoke(rt, new object[] { "Ping completed, pause ..." });
@@ -298,12 +304,18 @@ namespace Putty_starter
             }
             catch { }
         }
+        /// <summary>
+        /// Цвет недоступного хоста в списке
+        /// </summary>
         Color deniedColor = Color.OrangeRed;
         Brush deniedBrush;
         /// <summary>
         /// Отображать окно по верх остальных окон
         /// </summary>
         bool Top_Most = false;
+        /// <summary>
+        /// Пауза между сканированиями хостов
+        /// </summary>
         int ping_pause = 0;
         /// <summary>
         /// Уведомлять о доступности недоступного ранее ресурса
@@ -332,13 +344,8 @@ namespace Putty_starter
         }
         private void ListBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            
-                //if (e.Button == MouseButtons.Right)
-                //{
-                    contextMenuStrip1.Visible = true;
-                    contextMenuStrip1.Show(listBox1, new Point(e.X, e.Y));
-               // }
-            
+            contextMenuStrip1.Visible = true;
+            contextMenuStrip1.Show(listBox1, new Point(e.X, e.Y));
         }
         private void ПодключитьсядвойКликToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -400,6 +407,8 @@ namespace Putty_starter
                     hosts_availability = new bool[listBox1.Items.Count];
                     for (int i = 0; i < hosts_availability.Length; i++)
                         hosts_availability[i] = false;
+                    hosts_info[listBox1.SelectedIndex] = (fm3.ReturnName() + "\t" + fm3.ReturnIP() + "\t" + fm3.ReturnKey() + "\t" + fm3.ReturnKey2() + "\t" + fm3.ReturnIsNotificate() + "\t" + bb[5]);
+
                     Save_Hosts();
                 }
                 this.Show();
@@ -548,6 +557,15 @@ namespace Putty_starter
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void listBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Visible = true;
+                contextMenuStrip1.Show(listBox1, new Point(e.X, e.Y));
+            }
         }
     }
 }

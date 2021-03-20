@@ -15,7 +15,7 @@ namespace Putty_starter
         /// </summary>
         /// <param name="name">Отображаемое имя ресурса</param>
         /// <param name="IP">Сетевое имя ресурса</param>
-        /// <param name="Key">Пароль VipNET 1</param>
+        /// <param name="Key">Пароль SSH</param>
         /// <param name="Key2">Пароль VipNET 2</param>
         /// <param name="Top_Most">Отобразить порму поверх всех окон</param>
         /// <param name="IsNotificate">Уведомлять о доступности (1/0) ресурса</param>

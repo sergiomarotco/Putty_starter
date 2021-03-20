@@ -58,7 +58,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(0, 81);
             this.listBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.listBox1.MinimumSize = new System.Drawing.Size(0, 81);
+            this.listBox1.MinimumSize = new System.Drawing.Size(4, 81);
             this.listBox1.MultiColumn = true;
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(241, 628);
@@ -67,6 +67,7 @@
             this.listBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox1_DrawItem);
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             this.listBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDoubleClick);
+            this.listBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDown);
             // 
             // Closebutton
             // 

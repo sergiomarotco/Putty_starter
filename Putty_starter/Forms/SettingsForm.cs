@@ -60,7 +60,7 @@ namespace Putty_starter
                 + Convert.ToByte(textBox3.ForeColor.G) + ","
                 + Convert.ToByte(textBox3.ForeColor.B);
             towrite[5] = "Top_Most\tОкно программы отображать поверх всех окон\t" + checkBox3.Checked;
-            towrite[6] = "Ping\tЗначение пинга заданное по - умолчание\t" + textBox4.Text;
+            towrite[6] = "Ping\tЗначение пинга заданное по - умолчанию\t" + textBox4.Text;
             File.WriteAllLines("Pconfig.txt", towrite);
             this.DialogResult = DialogResult.OK;
         }
