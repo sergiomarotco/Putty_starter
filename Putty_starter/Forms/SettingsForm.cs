@@ -23,12 +23,12 @@ namespace Putty_starter
             }
             catch { }
         }
-        bool[] b;
-        string[] str2;
+        bool[] hosts_availability;
+        string[] hosts_info;
         private const int WM_NCHITTEST = 0x0084;
         private const int HTCAPTION = 2;
         MainForm fr;
-        public SettingsForm(string data, int ping_pause, bool DontFragment, Color deniedColor, bool Notification, bool Top_Most, int Ping, bool[] b, string[] str2)
+        public SettingsForm(string data, int ping_pause, bool DontFragment, Color deniedColor, bool Notification, bool Top_Most, int Ping, bool[] hosts_availability, string[] hosts_info)
         {
             TopMost = Top_Most;
             InitializeComponent();
@@ -39,8 +39,8 @@ namespace Putty_starter
             checkBox1.Checked = DontFragment;
             checkBox2.Checked = Notification;
             checkBox3.Checked = Top_Most;
-            this.b = b;
-            this.str2 = str2;
+            this.hosts_availability = hosts_availability;
+            this.hosts_info = hosts_info;
             textBox3.ForeColor = deniedColor;
             fr = new MainForm();
             //comboBox1.ForeColor=deniedColor
@@ -79,12 +79,18 @@ namespace Putty_starter
         {
             return textBox3.ForeColor;
         }
-        //открытый метод для доступа к текстовому полю данной формы  
+        /// <summary>
+        /// Вернуть значение паузы между сканированиями всего листа	
+        /// </summary>
+        /// <returns></returns>
         public string ReturnPause()
         {
             return (textBox1.Text);
         }
-        //открытый метод для доступа к текстовому полю данной формы  
+        /// <summary>
+        /// Вернуть значение паузы между сканированиями хостов	
+        /// </summary>
+        /// <returns></returns>
         public string ReturnPing_pause()
         {
             return (textBox2.Text);
@@ -99,7 +105,7 @@ namespace Putty_starter
         }
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            //this.DialogResult = DialogResult.OK;
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -113,7 +119,7 @@ namespace Putty_starter
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            //this.DialogResult = DialogResult.OK;
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -161,16 +167,16 @@ namespace Putty_starter
             if (MessageBox.Show("Сохранить на рабочий стол?", "Сохранение списка доступных ресурсов", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 string to_file = "Host Name" + Environment.NewLine;
-                for (int i = 0; i < b.Length; i++)
-                    if (b[i] == true)
-                        if (i != (b.Length - 1))
+                for (int i = 0; i < hosts_availability.Length; i++)
+                    if (hosts_availability[i] == true)
+                        if (i != (hosts_availability.Length - 1))
                         {
-                            string[] sss = str2[i].Split('\t');
+                            string[] sss = hosts_info[i].Split('\t');
                             to_file += sss[1] + Environment.NewLine;
                         }
                         else
                         {
-                            string[] sss = str2[i].Split('\t');
+                            string[] sss = hosts_info[i].Split('\t');
                             to_file += sss[1];
                         }
                 File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + @"\" + SS.FileName, to_file);
@@ -181,16 +187,16 @@ namespace Putty_starter
                 if (SS.ShowDialog() == DialogResult.OK)
                 {
                     string to_file = "Host Name" + Environment.NewLine;
-                    for (int i = 0; i < b.Length; i++)
-                        if (b[i] == true)
-                            if (i != (b.Length - 1))
+                    for (int i = 0; i < hosts_availability.Length; i++)
+                        if (hosts_availability[i] == true)
+                            if (i != (hosts_availability.Length - 1))
                             {
-                                string[] sss = str2[i].Split('\t');
+                                string[] sss = hosts_info[i].Split('\t');
                                 to_file += sss[1] + Environment.NewLine;
                             }
                             else
                             {
-                                string[] sss = str2[i].Split('\t');
+                                string[] sss = hosts_info[i].Split('\t');
                                 to_file += sss[1];
                             }
                     File.WriteAllText(SS.FileName, to_file);

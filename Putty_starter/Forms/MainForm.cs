@@ -70,10 +70,10 @@ namespace Putty_starter
             NewList(-1,-1,false);
             if (File.Exists("Pconfig.txt"))
             {
-                string[] buff = File.ReadAllLines("Pconfig.txt");
-                for (int i = 0; i < buff.Length; i++)
+                string[] Pconfig_from_file = File.ReadAllLines("Pconfig.txt");
+                for (int i = 0; i < Pconfig_from_file.Length; i++)
                 {
-                    string[] W = buff[i].Split('\t');
+                    string[] W = Pconfig_from_file[i].Split('\t');
                     switch (W[0])
                     {
                         case "Allpause":
@@ -325,7 +325,7 @@ namespace Putty_starter
                     deniedColor = fm.ReturnForeColor(); deniedBrush = new SolidBrush(deniedColor);
                     notification = fm.ReturnNotification();
                     Top_Most = fm.ReturnTopMost(); TopMost = Top_Most;
-                    Ping = fm.ReturnPing(); PingtextBox1.Text = Ping.ToString();
+                    Ping = fm.ReturnPing();
                 }
                 this.Show();
             }
